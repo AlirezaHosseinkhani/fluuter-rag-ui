@@ -32,7 +32,12 @@ class AtlasChatApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: AppConstants.appName,
-      theme: AppTheme.lightTheme,
+     theme: ThemeData(
+        fontFamily: 'IRANSansMobile',
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(fontFamily: 'IRANSansMobile'),
+        ),
+     ),
       home: const MainPage(),
       debugShowCheckedModeBanner: false,
       locale: const Locale('fa', 'IR'),

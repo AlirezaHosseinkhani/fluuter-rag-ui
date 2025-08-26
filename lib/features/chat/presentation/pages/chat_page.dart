@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher.dart';
 import '../bloc/chat_bloc.dart';
 import '../bloc/chat_event.dart';
 import '../bloc/chat_state.dart';
@@ -88,7 +89,8 @@ class _ChatViewState extends State<ChatView> {
             AppConstants.poweredByRobit,
             style: TextStyle(
               fontSize: 14,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.bold,
+              color: Colors.black
             ),
           ),
         ],
@@ -141,7 +143,7 @@ class _ChatViewState extends State<ChatView> {
                 child: Column(
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 8),
+                      padding: const EdgeInsets.symmetric(horizontal: 32,vertical: 8),
                       width: double.infinity,
                       height: 100,
                       decoration: BoxDecoration(
@@ -207,7 +209,7 @@ class _ChatViewState extends State<ChatView> {
                         title: 'وب‌سایت طرح و پردازش غدیر',
                         content: 'مراجعه به وب‌سایت طرح و پردازش غدیر',
                         onTap: () {
-                          launchUrl(Uri.parse('https://ghadir.co/'), mode: LaunchMode.externalApplication);
+                          launchUrl(Uri.parse('https://ghadir.co/'), mode: LaunchMode.platformDefault,);
                         },
                       ),
                       const SizedBox(height: 16),
@@ -216,7 +218,7 @@ class _ChatViewState extends State<ChatView> {
                         title: 'وب‌سایت اطلس',
                         content: 'مشاهده و بررسی وبسایت اطلس',
                         onTap: () {
-                          launchUrl(Uri.parse('https://atlasco.org/'), mode: LaunchMode.externalApplication);
+                          launchUrl(Uri.parse('https://atlasco.org/'), mode: LaunchMode.platformDefault,);
                         },
                       ),
                       const SizedBox(height: 16),
@@ -225,7 +227,7 @@ class _ChatViewState extends State<ChatView> {
                         title: 'تماس ما',
                         content: 'پاسخگویی به سوالات و خرید محصولات',
                         onTap: () {
-                          launchUrl(Uri.parse('https://ghadir.co/contact/'), mode: LaunchMode.externalApplication);
+                          launchUrl(Uri.parse('https://ghadir.co/contact/'), mode: LaunchMode.platformDefault,);
                         },
                       ),
                     ],

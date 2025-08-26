@@ -104,10 +104,11 @@ class MessageBubble extends StatelessWidget {
                               : Theme.of(context).textTheme.bodyLarge?.color,
                           fontSize: isLandscape ? 16 : 14,
                           height: 1.8,
-                          fontWeight: FontWeight.normal
+                          fontWeight: FontWeight.w500,
+                          fontFamily: 'IRANSansMobile',
                         ),
-                        // textDirection: TextDirection.rtl,
-                      ),
+                        textDirection: TextDirection.rtl,
+                      )
                     ],
                   ),
                   // Show feedback buttons for AI messages and copy button for all messages
