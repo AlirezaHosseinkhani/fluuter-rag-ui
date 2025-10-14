@@ -1,3 +1,4 @@
+// main.dart
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -9,10 +10,8 @@ import 'injection_container.dart' as di;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize dependencies
   await di.init();
 
-  // Configure system UI
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -32,12 +31,7 @@ class AtlasChatApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: AppConstants.appName,
-     theme: ThemeData(
-        fontFamily: 'IRANSansMobile',
-        textTheme: const TextTheme(
-          bodyMedium: TextStyle(fontFamily: 'IRANSansMobile'),
-        ),
-     ),
+      theme: AppTheme.lightTheme,
       home: const MainPage(),
       debugShowCheckedModeBanner: false,
       locale: const Locale('fa', 'IR'),
@@ -61,88 +55,84 @@ class MainPage extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        backgroundColor: const Color(0xFFF8FAFC),
+        backgroundColor: AppTheme.surfaceColor,
         body: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                const Color(0xFFF8FAFC),
-                Colors.grey.shade50,
-              ],
-            ),
+            gradient: AppTheme.backgroundGradient,
           ),
           child: SafeArea(
             child: isLandscape
-                ? const ChatPage() // In landscape, ChatPage handles everything
+                ? const ChatPage()
                 : Column(
               children: [
                 const SizedBox(height: 16),
-                // Header for portrait mode
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            width: 40,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .primary
-                                  .withOpacity(0.1),
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.access_time_rounded,
-                              size: 25,
-                              color:
-                              Theme.of(context).colorScheme.primary,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          const Text(
-                            AppConstants.appName,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF1F2937),
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                _buildPortraitHeader(context),
                 const SizedBox(height: 8),
-                // Chat Interface
                 const Expanded(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     child: ChatPage(),
                   ),
                 ),
-                // Footer
-                Padding(
-                  padding: const EdgeInsets.all(12),
-                  child: Text(
-                    'پاسخگویی به سوالات مربوط به انواع دستگاه ها و اخبار سایت',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey.shade500,
-                    ),
-                    maxLines: 1,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
+                _buildFooter(),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildPortraitHeader(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Row(
+        children: [
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  AppTheme.primaryColor.withOpacity(0.2),
+                  AppTheme.primaryColor.withOpacity(0.1),
+                ],
+              ),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.access_time_rounded,
+              size: 22,
+              color: AppTheme.primaryColor,
+            ),
+          ),
+          const SizedBox(width: 12),
+          const Text(
+            AppConstants.appName,
+            style: TextStyle(
+              fontSize: 17,
+              fontWeight: FontWeight.w700,
+              color: AppTheme.textPrimaryColor,
+              letterSpacing: -0.3,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFooter() {
+    return Padding(
+      padding: const EdgeInsets.all(12),
+      child: Text(
+        'پاسخگویی به سوالات مربوط به انواع دستگاه ها و اخبار سایت',
+        style: TextStyle(
+          fontSize: 11,
+          color: AppTheme.textSecondaryColor,
+          fontWeight: FontWeight.w500,
+        ),
+        maxLines: 1,
+        textAlign: TextAlign.center,
       ),
     );
   }

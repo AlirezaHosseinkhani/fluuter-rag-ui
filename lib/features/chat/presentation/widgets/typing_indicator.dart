@@ -17,10 +17,16 @@ class TypingIndicator extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
+            Icon(
+              Icons.auto_awesome,
+              size: 16,
+              color: const Color(0xFF6366F1).withOpacity(0.8),
+            ),
+            const SizedBox(width: 12),
             _buildDot(context, 0),
-            const SizedBox(width: 4),
+            const SizedBox(width: 6),
             _buildDot(context, 200),
-            const SizedBox(width: 4),
+            const SizedBox(width: 6),
             _buildDot(context, 400),
           ],
         ),

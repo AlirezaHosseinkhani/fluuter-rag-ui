@@ -1,5 +1,5 @@
 class ApiConstants {
-  static const String baseUrl = 'http://65.109.193.233:8000/api/v1';
+  static const String baseUrl = 'http://0.0.0.0:8000/api/v1';
   static const String chatEndpoint = '/chat/ask';
   static const String feedbackEndpoint = '/feedback/feedback';
 
