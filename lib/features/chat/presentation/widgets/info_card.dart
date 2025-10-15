@@ -82,8 +82,8 @@ class InfoCard extends StatelessWidget {
                     ),
                   ),
                   if (onTap != null)
-                    Icon(
-                      Icons.arrow_back_ios_rounded,
+                    const Icon(
+                      Icons.arrow_forward_ios,
                       size: 14,
                       color: AppTheme.textTertiaryColor,
                     ),

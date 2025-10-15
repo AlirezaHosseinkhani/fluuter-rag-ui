@@ -292,7 +292,7 @@ class _ChatViewState extends State<ChatView> {
               borderRadius: BorderRadius.circular(20),
             ),
             child: Text(
-              'Beta Version 0.1.0',
+              'Version 1.0.0',
               style: TextStyle(
                 fontSize: 11,
                 color: AppTheme.primaryColor,
